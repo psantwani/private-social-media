@@ -1,63 +1,75 @@
-import ext from "./utils/ext";
-import storage from "./utils/storage";
+import $ from "jquery";
 
-var popup = document.getElementById("app");
-storage.get('color', function(resp) {
-  var color = resp.color;
-  if(color) {
-    popup.style.backgroundColor = color
-  }
+$(".notification-icon").on("click", (e) => {
+  $(".notification-icon.active").removeClass("active");
+  $(e.currentTarget).addClass("active");
+  $(".social-media-cards.active").removeClass("active");
+  console.log(e.currentTarget.id.split("-icon")[0]);
+  $(`#${e.currentTarget.id.split("-icon")[0]}-cards`).addClass("active");
 });
 
-var template = (data) => {
-  var json = JSON.stringify(data);
-  return (`
-  <div class="site-description">
-    <h3 class="title">${data.title}</h3>
-    <p class="description">${data.description}</p>
-    <a href="${data.url}" target="_blank" class="url">${data.url}</a>
-  </div>
-  <div class="action-container">
-    <button data-bookmark='${json}' id="save-btn" class="btn btn-primary">Save</button>
-  </div>
-  `);
-}
-var renderMessage = (message) => {
-  var displayContainer = document.getElementById("display-container");
-  displayContainer.innerHTML = `<p class='message'>${message}</p>`;
-}
+// import ext from "./utils/ext";
+// import storage from "./utils/storage";
+// import IonIcon from 'ionicons';
 
-var renderBookmark = (data) => {
-  var displayContainer = document.getElementById("display-container")
-  if(data) {
-    var tmpl = template(data);
-    displayContainer.innerHTML = tmpl;  
-  } else {
-    renderMessage("Sorry, could not extract this page's title and URL")
-  }
-}
+// var popup = document.getElementById("app");
+// storage.get('color', function(resp) {
+//   var color = resp.color;
+//   if(color) {
+//     popup.style.backgroundColor = color
+//   }
+// });
 
-ext.tabs.query({active: true, currentWindow: true}, function(tabs) {
-  var activeTab = tabs[0];
-  chrome.tabs.sendMessage(activeTab.id, { action: 'process-page' }, renderBookmark);
-});
+// var template = (data) => {
+//   var json = JSON.stringify(data);
+//   return (`
+//   <div class="site-description">
+//     <h3 class="title">${data.title}</h3>
+//     <p class="description">${data.description}</p>
+//     <a href="${data.url}" target="_blank" class="url">${data.url}</a>
+//   </div>
+//   <div class="action-container">
+//     <button data-bookmark='${json}' id="save-btn" class="btn btn-primary">Save</button>
+//   </div>
+//   `);
+// }
+// var renderMessage = (message) => {
+//   var displayContainer = document.getElementById("display-container");
+//   displayContainer.innerHTML = `<p class='message'>${message}</p>`;
+// }
 
-popup.addEventListener("click", function(e) {
-  if(e.target && e.target.matches("#save-btn")) {
-    e.preventDefault();
-    var data = e.target.getAttribute("data-bookmark");
-    ext.runtime.sendMessage({ action: "perform-save", data: data }, function(response) {
-      if(response && response.action === "saved") {
-        renderMessage("Your bookmark was saved successfully!");
-      } else {
-        renderMessage("Sorry, there was an error while saving your bookmark.");
-      }
-    })
-  }
-});
+// var renderBookmark = (data) => {
+//   var displayContainer = document.getElementById("display-container")
+//   if(data) {
+//     var tmpl = template(data);
+//     displayContainer.innerHTML = tmpl;  
+//   } else {
+//     renderMessage("Sorry, could not extract this page's title and URL")
+//   }
+// }
 
-var optionsLink = document.querySelector(".js-options");
-optionsLink.addEventListener("click", function(e) {
-  e.preventDefault();
-  ext.tabs.create({'url': ext.extension.getURL('options.html')});
-})
+// ext.tabs.query({active: true, currentWindow: true}, function(tabs) {
+//   var activeTab = tabs[0];
+//   chrome.tabs.sendMessage(activeTab.id, { action: 'process-page' }, renderBookmark);
+// });
+
+// popup.addEventListener("click", function(e) {
+//   if(e.target && e.target.matches("#save-btn")) {
+//     e.preventDefault();
+//     var data = e.target.getAttribute("data-bookmark");
+//     ext.runtime.sendMessage({ action: "perform-save", data: data }, function(response) {
+//       if(response && response.action === "saved") {
+//         renderMessage("Your bookmark was saved successfully!");
+//       } else {
+//         renderMessage("Sorry, there was an error while saving your bookmark.");
+//       }
+//     })
+//   }
+// });
+
+// var optionsLink = document.querySelector(".js-options");
+// optionsLink.addEventListener("click", function(e) {
+//   e.preventDefault();
+//   ext.tabs.create({'url': ext.extension.getURL('options.html')});
+// })
+

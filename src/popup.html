@@ -1,24 +1,79 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <link href="styles/popup.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <link href="styles/popup.css" rel="stylesheet" />
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
   </head>
   <body>
     <div id="app" class="popup-content">
-      <h1 class="app-name">Extension Boilerplate</h1>
+      <nav>
 
-      <div id="display-container"></div>
+        <div class="notification-icon active" id="facebook-icon">
+          <i class="social-media-item"><ion-icon name="logo-facebook"></ion-icon></i>
+          <span class="num-count">1</span>
+        </div>
 
-      <footer>
-        <p>
-          <small>
-            <a href="#" class="js-options">Options</a>
-          </small>
-        </p>
-      </footer>
+        <spacer></spacer>
+
+        <div class="notification-icon" id="twitter-icon">
+          <i class="social-media-item"><ion-icon name="logo-twitter"></ion-icon></i>
+          <span class="num-count">1</span>
+        </div>
+
+        <spacer></spacer>        
+
+        <div class="notification-icon" id="linkedin-icon">
+          <i class="social-media-item"><ion-icon name="logo-linkedin"></ion-icon></i>
+          <span class="num-count">1</span>
+        </div>
+
+        <spacer></spacer>
+
+        <div class="notification-icon" id="instagram-icon">
+          <i class="social-media-item"><ion-icon name="logo-instagram"></ion-icon></i>          
+          <span class="num-count">1</span>
+        </div>
+
+        <spacer></spacer>
+
+        <div class="notification-icon" id="youtube-icon">
+          <i class="social-media-item"><ion-icon name="logo-youtube"></ion-icon></i>
+          <span class="num-count">1</span>
+        </div>
+
+      </nav>
+      <main>
+        <div class="content">
+          <div class="social-media-cards" id="twitter-cards">
+            <div class="blurred-box login-message">
+              <p>Login with <a class="login-link" href="#">Twitter</a> to view private tweets from your followers.</p>
+            </div>
+          </div>          
+          <div class="social-media-cards active" id="facebook-cards">
+            <div class="blurred-box login-message">
+              <p>Login with <a class="login-link" href="#">Facebook</a> to view private comments from your friends.</p>
+            </div>
+          </div>
+          <div class="social-media-cards" id="youtube-cards">
+            <div class="blurred-box login-message">
+              <p>Login with <a class="login-link" href="#">Google</a> to view videos tagged for you.</p>
+            </div>
+          </div>
+          <div class="social-media-cards" id="instagram-cards">
+            <div class="blurred-box login-message">
+              <p>Login with <a class="login-link" href="#">Instagram</a> to view private comments from your followers.</p>
+            </div>            
+          </div>
+          <div class="social-media-cards" id="linkedin-cards">
+            <div class="blurred-box login-message">
+              <p>Login with <a class="login-link" href="#">LinkedIn</a> to view private comments from your connections.</p>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
-    
+
     <script src="scripts/popup.js"></script>
   </body>
 </html>

@@ -25,11 +25,13 @@
   "content_scripts": [
     {
       "matches": [
-        "http://*/*",
-        "https://*/*"
+        "https://*.linkedin.com/*"
       ],
       "js": [
-        "scripts/contentscript.js"
+        "scripts/linkedin.js"
+      ],
+      "css": [
+        "styles/linkedin.css"
       ],
       "run_at": "document_end",
       "all_frames": false
@@ -40,9 +42,10 @@
       "19": "icons/icon-19.png",
       "38": "icons/icon-38.png"
     },
-    "default_title": "Extension Boilerplate",
+    "default_title": "Private Social Media",
     "default_popup": "popup.html"
-  }
+  },
+  "content_security_policy": "script-src 'self' https://unpkg.com; object-src 'self'"
 }
 
 
